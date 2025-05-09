@@ -39,6 +39,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/feed/{id}', [FeedController::class, 'update'])->name('feed.update');
     Route::delete('/feed/{id}', [FeedController::class, 'destroy'])->name('feed.destroy');
     Route::post('/feeds/{id}/like', [FeedController::class, 'like'])->name('feed.like');
+
+    Route::get('/feed/{id}/comments', [FeedController::class, 'showComments'])->name('feed.comments');
+    Route::post('/feed/{id}/comments', [FeedController::class, 'storeComment'])->name('feed.storeComment');
+    
     
     // Archive Routes
     Route::get('/archive', [ArchiveController::class, 'index'])->name('archive.index');

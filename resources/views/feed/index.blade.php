@@ -111,6 +111,7 @@
     }
 </style>
 
+
 <div class="feed-scroll">
     <!-- Profil Section -->
     <div class="card shadow-lg border-0 mb-5 profile-card text-center">
@@ -174,12 +175,23 @@
                             <!-- Action Buttons -->
                             <div class="d-flex justify-content-around pb-3 feed-actions">
                                 <a href="{{ route('feed.edit', $feed->id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                                <a href="{{ route('feed.comments', $feed->id) }}" class="btn btn-sm btn-outline-warning">Komentar</a>
                                 <form action="{{ route('feed.destroy', $feed->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus feed ini?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                                 </form>
                             </div>
+
+                            <!-- Komentar -->
+<div class="comments-count text-center mb-3">
+    <span class="badge badge-pill badge-primary">
+        {{ $feed->comments->count() }} Komentar
+    </span>
+</div>
+
+
+
                         </div>
                     </div>
                 @empty
@@ -189,4 +201,5 @@
         </div>
     </div>
 </div>
+
 @endsection

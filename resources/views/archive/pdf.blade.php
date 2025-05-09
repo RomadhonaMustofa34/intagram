@@ -2,29 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Archive PDF</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            color: #333;
         }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: #2c3e50;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
-        table, th, td {
-            border: 1px solid black;
+
+        thead {
+            background-color: #007bff;
+            color: white;
         }
+
         th, td {
             text-align: left;
-            padding: 8px;
+            padding: 12px 10px;
+            border: 1px solid #dee2e6;
         }
-        th {
-            background-color: #f2f2f2;
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
         }
-        h2 {
-            text-align: center;
+
+        img {
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -45,8 +61,7 @@
                         @if (Str::contains($feed->media, ['.mp4', '.mov']))
                             Video: {{ $feed->media }}
                         @else
-                            <img src="{{ public_path('storage/' . $feed->media) }}" 
-                                alt="Media" style="width: 100px; height: auto;">
+                            <img src="{{ public_path('storage/' . $feed->media) }}" alt="Media" style="width: 100px;">
                         @endif
                     </td>
                     <td>{{ $feed->created_at->format('d M Y') }}</td>

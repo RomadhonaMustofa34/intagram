@@ -88,7 +88,7 @@
             <!-- Submit Button -->
             <div class="text-center">
     <button type="submit" class="btn btn-primary btn-lg px-4">Simpan Perubahan</button>
-    <a href="{{ route('feed.index') }}" class="btn btn-secondary btn-lg px-4">Batal</a>
+    <a href="{{ route('feed.index') }}" class="btn btn-warning btn-lg px-4">Batal</a>
 </div>
 
         </form>

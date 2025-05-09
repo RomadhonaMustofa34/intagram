@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Feed;
+use App\Models\Comment; 
+use Auth;
 
 class FeedController extends Controller
 {
@@ -88,12 +90,42 @@ class FeedController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        // Hapus file dari storage
+ 
         Storage::disk('public')->delete($feed->media);
 
-        // Hapus data dari database
+ 
         $feed->delete();
 
         return redirect()->route('feed.index')->with('success', 'Feed berhasil dihapus.');
     }
+
+    public function showComments($id)
+{
+
+    $feed = Feed::findOrFail($id);
+
+
+    $comments = $feed->comments;
+
+
+    return view('feed.show', compact('feed', 'comments'));
+}
+
+
+    public function storeComment(Request $request, $id)
+    {
+        $request->validate([
+            'comment' => 'required|max:255', 
+        ]);
+
+        $feed = Feed::findOrFail($id);
+        $comment = new Comment();
+        $comment->user_id = Auth::id();
+        $comment->feed_id = $feed->id;
+        $comment->comment = $request->comment;
+        $comment->save();
+
+        return redirect()->route('feed.comments', $feed->id)->with('success', 'Komentar berhasil ditambahkan.');
+    }
+    
 }
