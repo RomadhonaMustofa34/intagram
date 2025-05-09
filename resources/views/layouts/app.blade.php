@@ -30,7 +30,7 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-3" style="background: linear-gradient(135deg, #6610f2, #007bff);">
+        <aside class="main-sidebar sidebar-dark-primary elevation-3" style="background: linear-gradient(135deg,rgb(42, 41, 42), #007bff);">
             <!-- Brand Logo -->
             <a href="/profile" class="brand-link">
                 <img src="{{ Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : 'https://via.placeholder.com/150' }}" 
